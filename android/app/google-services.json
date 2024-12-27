@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1084455742546",
+    "project_id": "market-notebook",
+    "storage_bucket": "market-notebook.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084455742546:android:d51672ab04c701fa73438b",
+        "android_client_info": {
+          "package_name": "com.example.market"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHuo1DQwvu-1zZWC1BRP3sYXurp8fVDz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
