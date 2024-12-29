@@ -1,13 +1,13 @@
 import 'package:market/components/my_drawer.dart';
-import 'package:market/components/my_list_tile.dart';
+import 'package:market/components/tile/my_list_tile.dart';
 import 'package:market/components/my_post_button.dart';
 import 'package:market/components/my_textfield.dart';
 import 'package:market/database/firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class DashboardPage extends StatelessWidget {
+  DashboardPage({super.key});
 
   // firestore database
   final FireStoreDatabase database = FireStoreDatabase();

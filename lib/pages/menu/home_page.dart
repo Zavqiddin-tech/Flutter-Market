@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:market/components/tile/home_list_tile.dart';
 import 'package:market/components/tile/my_list_tile.dart';
 import 'package:market/database/firestore.dart';
 
-class ClientPage extends StatelessWidget {
-  ClientPage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
   // firestore databse
-  final FirestoreClient database = FirestoreClient();
+  final FirestoreHome database = FirestoreHome();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mijozlar'),
+        title: const Text('Uy'),
         backgroundColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         elevation: 0,
@@ -22,7 +23,7 @@ class ClientPage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/client_add_page');
+                Navigator.pushNamed(context, '/home_add_page');
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -44,7 +45,7 @@ class ClientPage extends StatelessWidget {
         children: [
           // Posts
           StreamBuilder(
-              stream: database.getClientStream(),
+              stream: database.getHomeStream(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
@@ -53,10 +54,9 @@ class ClientPage extends StatelessWidget {
                 }
 
                 // get all posts
-                final clients = snapshot.data!.docs;
-
+                final homes = snapshot.data!.docs;
                 // no data?
-                if (snapshot.data == null || clients.isEmpty) {
+                if (snapshot.data == null || homes.isEmpty) {
                   return const Center(
                     child: Padding(
                       padding: EdgeInsets.all(25),
@@ -68,18 +68,27 @@ class ClientPage extends StatelessWidget {
                 // return as a list
                 return Expanded(
                     child: ListView.builder(
-                        itemCount: clients.length,
+                        itemCount: homes.length,
                         itemBuilder: (context, index) {
                           // get each individual posts
-                          final post = clients[index];
+                          final post = homes[index];
 
                           // get data from each post
-                          String message = post['FullName'];
+                          String id = post.id;
+                          String homeName = post['HomeName'];
+                          String count = post['HomeCount'];
+                          bool busy = post['Busy'];
+                          String other = post['Other'];
                           String userEmail = post['UserEmail'];
                           Timestamp timestamp = post['TimeStamp'];
                           // return as a list tile
-                          return MyListTile(
-                              title: message, subtitle: userEmail);
+                          return HomeListTile(
+                            home: homeName,
+                            count: count,
+                            busy: busy,
+                            other: other,
+                            userEmail: userEmail,
+                          );
                         }));
               }),
         ],

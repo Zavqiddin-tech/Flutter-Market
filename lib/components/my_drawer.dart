@@ -28,8 +28,8 @@ class MyDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
-                  leading: const Icon(Icons.home),
-                  title: const Text('H O M E'),
+                  leading: const Icon(Icons.dashboard),
+                  title: const Text('D A S H B O A R D'),
                   onTap: () {
                     Navigator.pop(context);
                   },
@@ -46,6 +46,32 @@ class MyDrawer extends StatelessWidget {
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, '/client_page');
+                  },
+                ),
+              ),
+              
+              // homes tile
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0),
+                child: ListTile(
+                  leading: const Icon(Icons.home_filled),
+                  title: const Text('U Y L A R'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/home_page');
+                  },
+                ),
+              ),
+              
+              // contracts tile
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0),
+                child: ListTile(
+                  leading: const Icon(Icons.payment_rounded),
+                  title: const Text('S H A R T N O M A'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/contract_page');
                   },
                 ),
               ),

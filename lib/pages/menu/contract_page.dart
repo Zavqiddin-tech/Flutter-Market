@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:market/components/tile/my_list_tile.dart';
 import 'package:market/database/firestore.dart';
 
-class ClientPage extends StatelessWidget {
-  ClientPage({super.key});
+class ContractPage extends StatelessWidget {
+  ContractPage({super.key});
 
   // firestore databse
-  final FirestoreClient database = FirestoreClient();
+  final FirestoreContract database = FirestoreContract();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mijozlar'),
+        title: const Text('Shartnoma'),
         backgroundColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         elevation: 0,
@@ -22,7 +22,7 @@ class ClientPage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/client_add_page');
+                Navigator.pushNamed(context, '/contract_add_page');
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -44,7 +44,7 @@ class ClientPage extends StatelessWidget {
         children: [
           // Posts
           StreamBuilder(
-              stream: database.getClientStream(),
+              stream: database.getContractStream(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
@@ -53,10 +53,10 @@ class ClientPage extends StatelessWidget {
                 }
 
                 // get all posts
-                final clients = snapshot.data!.docs;
+                final contracts = snapshot.data!.docs;
 
                 // no data?
-                if (snapshot.data == null || clients.isEmpty) {
+                if (snapshot.data == null || contracts.isEmpty) {
                   return const Center(
                     child: Padding(
                       padding: EdgeInsets.all(25),
@@ -68,10 +68,10 @@ class ClientPage extends StatelessWidget {
                 // return as a list
                 return Expanded(
                     child: ListView.builder(
-                        itemCount: clients.length,
+                        itemCount: contracts.length,
                         itemBuilder: (context, index) {
                           // get each individual posts
-                          final post = clients[index];
+                          final post = contracts[index];
 
                           // get data from each post
                           String message = post['FullName'];
